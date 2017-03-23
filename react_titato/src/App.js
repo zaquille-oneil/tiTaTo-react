@@ -40,7 +40,7 @@ class App extends Component {
       this.setState({
         board: this.state.board,
         currentTurn: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
-        winner: this.winCheck()
+        winner: this.winCheck() //"catsgame"
       })
     }
   }
@@ -56,19 +56,41 @@ class App extends Component {
     //with all possible winning combos.
     //each call to this function will look at all 8 winning combinations,
     //check if the slots are NOT blank and == in all 3 values
-    return winningCombos.find(function(combo){
+    var x = false
+    winningCombos.find(function(combo){
       if(symbols[combo[0]] !== "" && symbols[combo[1]] !== ""  && symbols[combo[2]] !== ""  && symbols[combo[0]] === symbols[combo[1]] && symbols[combo[1]] === symbols[combo[2]]) {
+        x = currentTurn
         return currentTurn
-      } else {
+      }
+      else if (symbols[0] !== "" &&
+               symbols[1] !== "" &&
+               symbols[2] !== "" &&
+               symbols[3] !== "" &&
+               symbols[4] !== "" &&
+               symbols[5] !== "" &&
+               symbols[6] !== "" &&
+               symbols[7] !== "" &&
+               symbols[8] !== "") {
+        console.log('catsgame')
+        x = 'catsgame'
+        return currentTurn
+      }
+      else {
         return false
       }
     })
+    return x
   }
+  // {this.state.winner ? <h1>{`The winner is
+  //   ${if(this.state.currentTurn === "X"){"X"}
+  //   else if (this.state.currentTurn === "O") {"O"}
+  //   else {"catsgame"}}`}</h1> : null}
+  // {this.state.winner ? <h1>{`The winner is ${this.state.currentTurn === "X" ? "O" : "X"}`}</h1> : null}
 
   render() {
     return (
       <div className="app-container">
-        {this.state.winner ? <h1>{`The winner is ${this.state.currentTurn === "X" ? "O" : "X"}`}</h1> : null}
+        <h1>Winner: {this.state.winner ? this.state.winner : null}</h1>
         <div className="board">
           {this.state.board.map((cell, index) => {
             return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
