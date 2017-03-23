@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 
+class ResetButton extends Component {
+  constructor(props) {
+    super(props)
+  }
+  componentDidMount() {
+    console.log(this.props);
+  }
+  render () {
+    return (<div className='zbutton' onClick={() => this.props.handleReset()}>Reset</div>)
+  }
+}
 class App extends Component {
 
   //inside of a component, there is a life cycle.
@@ -33,7 +44,15 @@ class App extends Component {
   //           }
   //       })
   //   }
-
+  handleReset() {
+    this.setState({
+      board:[
+        "","","","","","","","",""
+      ],
+      winner: null,
+      currentTurn: "X"
+    })
+  }
   handleClick(index) {
     if (this.state.board[index] === "" && !this.state.winner) {
       this.state.board[index] = this.state.currentTurn
@@ -90,7 +109,10 @@ class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <h1>Winner: {this.state.winner ? this.state.winner : null}</h1>
+        {//ResetButton now has access to props}
+        }
+        <ResetButton handleReset={this.handleReset.bind(this)}/>
+        <h1> Winner: {this.state.winner ? this.state.winner : null}</h1>
         <div className="board">
           {this.state.board.map((cell, index) => {
             return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
