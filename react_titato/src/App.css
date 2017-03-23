@@ -46,3 +46,18 @@
     cursor: pointer;
     background-color: #80cd92;
 }
+.zbutton {
+  height: 50px;
+  width: 50px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  font-size: 2em;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font: alice;
+}
+.zbutton:hover {
+  cursor: pointer;
+  background-color: orange;
+}
