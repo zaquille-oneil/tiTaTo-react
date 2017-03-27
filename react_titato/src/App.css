@@ -6,10 +6,16 @@
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-
+html {
+  height: 100%;
+  width: 100%;
+}
 body {
+  height: 100%;
+  width: 100%;
   background-color: #80cd92;
   color: white;
+  font: alice;
 }
 
 .App-header {
@@ -28,14 +34,19 @@ body {
   to { transform: rotate(360deg); }
 }
 
+.app-container {
+margin: 0 auto;
+}
+
 .board {
-    display: flex;
     width: 600px;
     height: 600px;
     border: 5px solid white;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 .square {
     height: 200px;
@@ -54,9 +65,9 @@ body {
 }
 .zbutton {
   height: 50px;
-  width: 150px;
+  width: 100px;
   box-sizing: border-box;
-  border: 5px solid white;
+  margin: 5px;
   font-size: 2em;
   display:flex;
   justify-content: center;
@@ -65,5 +76,6 @@ body {
 }
 .zbutton:hover {
   cursor: pointer;
-  background-color: orange;
+
+  color: gray;
 }

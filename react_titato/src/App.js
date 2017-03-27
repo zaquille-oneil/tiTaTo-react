@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
+// import './semanticModal.js'
 
 class ResetButton extends Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
-    console.log(this.props);
-  }
+
   render () {
-    return (<div className='zbutton' onClick={() => this.props.handleReset()}>Reset</div>)
+    return (<div className='zbutton' onClick={() => this.props.handleReset()}>RESET</div>)
   }
 }
 class App extends Component {
-
   //inside of a component, there is a life cycle.
   // LIFE CYCLE (an abstract programming concept):
   // imagine an order, it goes through a bunch of states.
@@ -77,11 +75,7 @@ class App extends Component {
     //check if the slots are NOT blank and == in all 3 values
     var x = false
     winningCombos.find(function(combo){
-      if(symbols[combo[0]] !== "" && symbols[combo[1]] !== ""  && symbols[combo[2]] !== ""  && symbols[combo[0]] === symbols[combo[1]] && symbols[combo[1]] === symbols[combo[2]]) {
-        x = currentTurn
-        return currentTurn
-      }
-      else if (symbols[0] !== "" &&
+      if (symbols[0] !== "" &&
                symbols[1] !== "" &&
                symbols[2] !== "" &&
                symbols[3] !== "" &&
@@ -89,15 +83,16 @@ class App extends Component {
                symbols[5] !== "" &&
                symbols[6] !== "" &&
                symbols[7] !== "" &&
-               symbols[8] !== "") {
-        console.log('catsgame')
-        x = 'catsgame'
+               symbols[8] !== "") {x = 'catsgame'}
+      if(symbols[combo[0]] !== "" && symbols[combo[1]] !== ""  && symbols[combo[2]] !== ""  && symbols[combo[0]] === symbols[combo[1]] && symbols[combo[1]] === symbols[combo[2]]) {
+        x = currentTurn
         return currentTurn
       }
       else {
         return false
       }
     })
+
     return x
   }
   // {this.state.winner ? <h1>{`The winner is
@@ -109,10 +104,12 @@ class App extends Component {
   render() {
     return (
       <div className="app-container">
+      <button class="ui button">Show Modal</button>
+
         {//ResetButton now has access to props}
         }
         <ResetButton handleReset={this.handleReset.bind(this)}/>
-        <h1> Winner: {this.state.winner ? this.state.winner : null}</h1>
+        <span>Winner: {this.state.winner ? this.state.winner : null}</span>
         <div className="board">
           {this.state.board.map((cell, index) => {
             return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
